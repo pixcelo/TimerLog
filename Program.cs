@@ -4,6 +4,16 @@
     {
         static HttpClient client = new HttpClient();
 
+        static string GeneratePath()
+        {
+            // e.g. https://api.cryptowat.ch/markets/:exchange/:pair/ohlc
+            string exchange = "bybit";
+            string pair = "BTCUSDT";
+            string url = $"https://api.cryptowat.ch/markets/{exchange}/{pair}/ohlc?after=1667239230";
+
+            return url;
+        }
+
         static async Task GetProductAsync(string path)
         {
             HttpResponseMessage response = await client.GetAsync(path);
@@ -23,7 +33,7 @@
         {
             try
             {
-                string url = "https://api.cryptowat.ch/markets/bybit/BTCUSDT/ohlc?after=1667239230";
+                string url = GeneratePath();
                 await GetProductAsync(url);
             }
             catch (Exception e)
@@ -35,5 +45,6 @@
 
             Console.ReadLine();
         }
+
     }
 }
