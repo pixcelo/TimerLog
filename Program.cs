@@ -4,11 +4,10 @@
     {
         static HttpClient client = new HttpClient();
 
-        static string GenerateTime()
+        static long GenerateUnixTime()
         {
-
-
-            return "";
+            DateTimeOffset dto = new DateTimeOffset(2022, 11, 1, 15, 30, 0, TimeSpan.Zero);
+            return dto.ToUnixTimeSeconds();
         }
 
         static string GeneratePath(long unixTime)
@@ -38,8 +37,7 @@
         {
             try
             {
-                DateTimeOffset dto = new DateTimeOffset(2022, 11, 1, 15, 30, 0, TimeSpan.Zero);
-                long unixTime = dto.ToUnixTimeSeconds();
+                long unixTime = GenerateUnixTime();
                 string url = GeneratePath(unixTime);
                 await GetProductAsync(url);
             }
