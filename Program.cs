@@ -4,14 +4,19 @@
     {
         static HttpClient client = new HttpClient();
 
-        static string GeneratePath()
+        static string GenerateTime()
+        {
+
+
+            return "";
+        }
+
+        static string GeneratePath(long unixTime)
         {
             // e.g. https://api.cryptowat.ch/markets/:exchange/:pair/ohlc
             string exchange = "bybit";
             string pair = "BTCUSDT";
-            string url = $"https://api.cryptowat.ch/markets/{exchange}/{pair}/ohlc?after=1667239230";
-
-            return url;
+            return $"https://api.cryptowat.ch/markets/{exchange}/{pair}/ohlc?after={unixTime}";
         }
 
         static async Task GetProductAsync(string path)
@@ -33,7 +38,9 @@
         {
             try
             {
-                string url = GeneratePath();
+                DateTimeOffset dto = new DateTimeOffset(2022, 11, 1, 15, 30, 0, TimeSpan.Zero);
+                long unixTime = dto.ToUnixTimeSeconds();
+                string url = GeneratePath(unixTime);
                 await GetProductAsync(url);
             }
             catch (Exception e)
