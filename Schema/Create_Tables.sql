@@ -1,0 +1,45 @@
+CREATE TABLE T_TimerLog (
+    Id BIGINT IDENTITY(1,1) NOT NULL,
+    StartAt DATETIME NOT NULL,
+    EndAt DATETIME NOT NULL,
+    UserId BIGINT NOT NULL,
+    TypeId BIGINT NULL,
+    CONSTRAINT PK_T_TimerLog PRIMARY KEY CLUSTERED 
+(
+	Id ASC
+));
+
+GO
+
+-- テストデータの削除
+TRUNCATE TABLE T_TimerLog;
+GO
+
+-- テストデータの挿入
+INSERT INTO T_TimerLog (StartAt, EndAt, UserId, TypeId)
+VALUES 
+('2020-01-01 00:00:00', '2020-01-01 00:15:00', 1, 1),
+('2020-01-01 00:15:00', '2020-01-01 00:30:00', 2, 1),
+('2020-01-01 00:45:00', '2020-01-01 01:00:00', 2, 2);
+
+GO
+
+-- ユーザーマスタ
+CREATE TABLE M_User (
+    Id BIGINT IDENTITY(1,1) NOT NULL,
+    Name NVARCHAR(64) NOT NULL,
+    CONSTRAINT PK_M_User PRIMARY KEY CLUSTERED 
+(
+	Id ASC
+));
+Go
+
+-- タイマータイプマスタ
+CREATE TABLE M_TimerType (
+    Id BIGINT IDENTITY(1,1) NOT NULL,
+    Name NVARCHAR(64) NOT NULL,
+    CONSTRAINT PK_M_TimerType PRIMARY KEY CLUSTERED 
+(
+	Id ASC
+));
+Go
