@@ -1,11 +1,12 @@
-# jimu
-C# Console Json Downloader
+# Screen Recorder
 
-```
-dotnet new console -f net6.0
-```
+## 機能
+- タイマーを起動する (指定した時間)
+- 音を鳴らす
+- OSの通知
+- タイマーの開始・終了時間からスクリーン時間の保存
+- 設定
+    - 時間の設定
 
-## Execute
-```
-dotnet run
-```
+## 要件
+- ブラウザから使用できる
