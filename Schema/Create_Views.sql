@@ -10,7 +10,7 @@ SELECT
     TT.Name AS TimerTypeName
 FROM
     T_TimerLog T
-    LEFT JOIN M_User U ON T.UserId = U.Id
+    LEFT JOIN M_Users U ON T.UserId = U.Id
     LEFT JOIN M_TimerType TT ON T.TypeId = TT.Id;
 
 GO
