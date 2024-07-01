@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TimerLog.WebAPI\TimerLog.WebAPI.csproj" />
+  </ItemGroup>
+
 </Project>

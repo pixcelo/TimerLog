@@ -1,7 +1,52 @@
 ﻿@page "/"
+@using TimerLog.WebAPI.Models
+@inject HttpClient httpClient
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+@if (timerLogs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ユーザー名</th>
+                <th>タイプ</th>
+                <th>開始時刻</th>
+                <th>終了時刻</th>
+                <th>経過時間 (分)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (V_TimerLog timerLog in timerLogs)
+            {
+                <tr>
+                    <td>@timerLog.Id</td>
+                    <td>@timerLog.UserName</td>
+                    <td>@timerLog.TimerTypeName</td>
+                    <td>@timerLog.StartAt</td>                    
+                    <td>@timerLog.EndAt</td>
+                    <td>@timerLog.ElapsedMinutes</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private List<V_TimerLog> timerLogs = new List<V_TimerLog>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        timerLogs = await httpClient.GetFromJsonAsync<List<V_TimerLog>>("api/TimerLog");
+    }
+}
