@@ -32,5 +32,12 @@
     - Id
     - Name
 
+    マスタ例：ゲーム、YouTube、百ます計算
+
 ### ビュー
 - V_TimerLog : タイマービュー (誰がいつ、どのタイマーをどれだけ使ったかを視る)
+
+## 参考
+### API関連
+- [ASP.NET Core を使って Web API を作成する](https://learn.microsoft.com/ja-jp/aspnet/core/web-api/?view=aspnetcore-8.0)
+- [ASP.NET Core APIサンプルコード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples)
