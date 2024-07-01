@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(timerLogOrigins,
         builder =>
         {
-            builder.WithOrigins("https://localhost:7040")
+            builder.WithOrigins("https://localhost:7177")
                 .AllowAnyMethod()
                 .AllowAnyHeader();
         });
