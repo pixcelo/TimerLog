@@ -1,9 +1,36 @@
+.dark-mode-blue {
+    /* dark-mode blue */
+    --background: rgb(21, 32, 43);
+    --font-color: white;
+    --highlight: rgb(21, 32, 43);
+    --highlight-2: #414648;
+    --link: #3ca4ff;
+    --background-img: none;
+    --border-color: #3ca4ff;
+    --btn-font-color: white;
+    --btn-background-color: rgb(21, 32, 43);
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 a, .btn-link {
-    color: #006bb7;
+    color: var(--link);
+}
+
+.alert-secondary {
+    background-color: var(--highlight-2);
+    border-color: var(--font-color);
+}
+
+.table {
+    color: var(--font-color);
+}
+
+main {
+    background-color: var(--background);
+    color: var(--font-color);
 }
 
 .btn-primary {
