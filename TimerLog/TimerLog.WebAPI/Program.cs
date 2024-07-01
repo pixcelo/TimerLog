@@ -1,3 +1,6 @@
+using TimerLog.WebAPI.Repositoriers;
+using TimerLog.WebAPI.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// DIƒRƒ“ƒeƒi‚Ìİ’è
+builder.Services.AddTransient<ITimerLogService, TimerLogService>();
+builder.Services.AddTransient<ITimerLogRepository, TimerLogRepository>();
 
 var app = builder.Build();
 
