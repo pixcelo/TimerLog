@@ -1,7 +1,22 @@
 using TimerLog.WebAPI.Repositoriers;
 using TimerLog.WebAPI.Services;
 
+// 名前付きCORSポリシー
+var timerLogOrigins = "timerLogOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+// CORSポリシーの設定
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(timerLogOrigins,
+        builder =>
+        {
+            builder.WithOrigins("https://localhost:7040")
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
 
 // Add services to the container.
 
@@ -24,6 +39,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// 名前付きCORSポリシーを指定
+app.UseCors(timerLogOrigins);
 
 app.UseAuthorization();
 
