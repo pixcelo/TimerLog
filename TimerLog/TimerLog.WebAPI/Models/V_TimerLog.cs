@@ -13,6 +13,11 @@
         /// <summary>
         /// タイプ名
         /// </summary>
-        public string? TypeName { get; set; }
+        public string? TimerTypeName { get; set; }
+
+        /// <summary>
+        /// 経過時間（分）
+        /// </summary>
+        public int? ElapsedMinutes { get; set;}
     }
 }
