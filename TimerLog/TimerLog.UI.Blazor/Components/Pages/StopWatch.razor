@@ -5,11 +5,11 @@
 
 <h3>StopWatch</h3>
 
-<p>Time: @timeSpan.ToString(@"hh\:mm\:ss")</p>
+<p>Time: @timeSpan.ToString(@"hh\:mm\:ss\.ff")</p>
 
-<button @onclick="StartStopwatch">スタート</button>
-<button @onclick="StopStopwatch">ストップ</button>
-<button @onclick="ResetStopwatch">リセット</button>
+<button type="button" class="btn btn-light" @onclick="StartStopwatch">スタート</button>
+<button type="button" class="btn btn-light" @onclick="StopStopwatch">ストップ</button>
+<button type="button" class="btn btn-light" @onclick="ResetStopwatch">リセット</button>
 
 @code {
     private TimeSpan timeSpan;
@@ -25,7 +25,7 @@
         if (!isRunning)
         {
             startTime = DateTime.Now - timeSpan;
-            timer = new Timer(Updatetime, null, 0, 1000);
+            timer = new Timer(Updatetime, null, 0, 10);
             isRunning = true;
         }
     }
