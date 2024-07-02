@@ -1,0 +1,62 @@
+﻿@page "/stopwatch"
+
+<PageTitle>StopWatch</PageTitle>
+
+<h3>StopWatch</h3>
+
+<p>Time: @timeSpan.ToString(@"hh\:mm\:ss")</p>
+
+<button @onclick="StartStopwatch">スタート</button>
+<button @onclick="StopStopwatch">ストップ</button>
+<button @onclick="ResetStopwatch">リセット</button>
+
+@code {
+    private TimeSpan timeSpan;
+    private bool isRunning = false;
+    private DateTime startTime;
+    private Timer? timer;
+
+    /// <summary>
+    /// ストップウォッチを開始する
+    /// </summary>
+    private void StartStopwatch()
+    {
+        if (!isRunning)
+        {
+            startTime = DateTime.Now - timeSpan;
+            timer = new Timer(Updatetime, null, 0, 1000);
+            isRunning = true;
+        }
+    }
+
+    /// <summary>
+    /// ストップウォッチを停止する
+    /// </summary>
+    private void StopStopwatch()
+    {
+        if (isRunning)
+        {
+            timer?.Dispose();
+            isRunning = false;
+        }
+    }
+
+    /// <summary>
+    /// ストップウォッチをリセットする
+    /// </summary>
+    private void ResetStopwatch()
+    {
+        StopStopwatch();
+        timeSpan = TimeSpan.Zero;
+    }
+
+    /// <summary>
+    /// タイマーを更新する
+    /// </summary>
+    /// <param name="state"></param>
+    private void Updatetime(object state)
+    {
+        timeSpan = DateTime.Now - startTime;
+        InvokeAsync(StateHasChanged);
+    }
+}
