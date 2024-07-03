@@ -1,4 +1,4 @@
-# Timer Recorder
+# Timer Log
 
 ## 機能
 - タイマーを起動する (指定した時間)
@@ -36,6 +36,16 @@
 
 ### ビュー
 - V_TimerLog : タイマービュー (誰がいつ、どのタイマーをどれだけ使ったかを視る)
+
+## デプロイ
+IIS
+
+どうやってデプロイするか？
+
+- GiHub Actions
+- Jenkins
+
+[Visual Studio を使用した ASP.NET Web 配置: テスト環境へのデプロイ](https://learn.microsoft.com/ja-jp/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-iis)
 
 ## 参考
 ### API関連
