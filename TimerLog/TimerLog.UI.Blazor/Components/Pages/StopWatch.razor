@@ -1,6 +1,9 @@
 ﻿@page "/stopwatch"
 @rendermode InteractiveServer
 
+@using TimerLog.WebAPI.Models
+@inject HttpClient httpClient
+
 <PageTitle>StopWatch</PageTitle>
 
 <h3>StopWatch</h3>
@@ -11,7 +14,25 @@
 <button type="button" class="btn btn-light" @onclick="StopStopwatch">ストップ</button>
 <button type="button" class="btn btn-light" @onclick="ResetStopwatch">リセット</button>
 
+<br />
+
+<select class="form-control">
+    @foreach (var user in users)
+    {
+        <option value="@user.Id">@user.Name</option>
+    }
+</select>
+
+<button type="button" class="btn btn-light" style="margin-top: 20px;">保存</button>
+
 @code {
+    private List<M_Users> users = new List<M_Users>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = await httpClient.GetFromJsonAsync<List<M_Users>>("api/Users");
+    }
+
     private TimeSpan timeSpan;
     private bool isRunning = false;
     private DateTime startTime;
