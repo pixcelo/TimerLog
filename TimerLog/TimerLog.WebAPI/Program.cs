@@ -27,7 +27,9 @@ builder.Services.AddSwaggerGen();
 
 // DIƒRƒ“ƒeƒi‚Ìİ’è
 builder.Services.AddTransient<ITimerLogService, TimerLogService>();
+builder.Services.AddTransient<IUsersService, UsersService>();
 builder.Services.AddTransient<ITimerLogRepository, TimerLogRepository>();
+builder.Services.AddTransient<IUsersRepository, UsersRepository>();
 
 var app = builder.Build();
 
