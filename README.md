@@ -25,7 +25,7 @@
     - TypeId : タイプID
 
 ### マスタテーブル
-- M_User : ユーザーマスタ
+- M_Users : ユーザーマスタ
     - Id
     - Name
 - M_TimerType : タイマータイプマスタ
@@ -38,7 +38,9 @@
 - V_TimerLog : タイマービュー (誰がいつ、どのタイマーをどれだけ使ったかを視る)
 
 ## デプロイ
-IIS
+
+- IIS でデプロイ
+- Docker + ngnx にWeb APIサーバー
 
 どうやってデプロイするか？
 
