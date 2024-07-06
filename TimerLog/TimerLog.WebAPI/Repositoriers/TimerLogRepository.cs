@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using System.Data.SqlClient;
 using TimerLog.WebAPI.Attributes;
 using TimerLog.WebAPI.DB.SQLServer;
 using TimerLog.WebAPI.Models;
@@ -49,8 +48,7 @@ namespace TimerLog.WebAPI.Repositoriers
         {
             var query = "SELECT * FROM V_TimerLog";
 
-            using (var connection = new SqlConnection(
-                SQLServerHelper.GetConnectionStringWithWindowsAuth("(localdb)\\MSSQLLocalDB", "TR")))
+            using (var connection = SQLServerHelper.CreateConnection())
             {
                 return connection.Query<V_TimerLog>(query).ToList();
             }
@@ -72,8 +70,7 @@ namespace TimerLog.WebAPI.Repositoriers
                     @TypeId
                 )";
 
-            using (var connection = new SqlConnection(
-                SQLServerHelper.GetConnectionStringWithWindowsAuth("(localdb)\\MSSQLLocalDB", "TR")))
+            using (var connection = SQLServerHelper.CreateConnection())
             {
                 return connection.Execute(query, timerLog);
             }
@@ -91,8 +88,7 @@ namespace TimerLog.WebAPI.Repositoriers
                 WHERE
                     Id = @Id";
 
-            using (var connection = new SqlConnection(
-                SQLServerHelper.GetConnectionStringWithWindowsAuth("(localdb)\\MSSQLLocalDB", "TR")))
+            using (var connection = SQLServerHelper.CreateConnection())
             {
                 return connection.Execute(query, timerLog);
             }
@@ -102,8 +98,7 @@ namespace TimerLog.WebAPI.Repositoriers
         {
             var query = "DELETE FROM T_TimerLog WHERE Id = @Id";
 
-            using (var connection = new SqlConnection(
-                SQLServerHelper.GetConnectionStringWithWindowsAuth("(localdb)\\MSSQLLocalDB", "TR")))
+            using (var connection = SQLServerHelper.CreateConnection())
             {
                 return connection.Execute(query, new { Id = id });
             }

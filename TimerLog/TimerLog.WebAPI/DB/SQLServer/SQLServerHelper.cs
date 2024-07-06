@@ -1,9 +1,38 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
 
 namespace TimerLog.WebAPI.DB.SQLServer
 {
-    public class SQLServerHelper
+    /// <summary>
+    /// SQLServerお助けクラス
+    /// </summary>
+    public static class SQLServerHelper
     {
+        private static readonly IConfiguration? configuration;
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="configuration"></param>
+        static SQLServerHelper()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            
+            configuration = builder.Build();
+        }
+
+        /// <summary>
+        /// SQLServerへの接続を作成する
+        /// </summary>
+        /// <returns></returns>
+        public static IDbConnection CreateConnection()
+        {
+            var connectionString = configuration?.GetConnectionString("SQLServerConnection");
+            return new SqlConnection(connectionString);
+        }
+
         /// <summary>
         /// 接続文字列を取得する
         /// </summary>
@@ -43,6 +72,7 @@ namespace TimerLog.WebAPI.DB.SQLServer
             builder.IntegratedSecurity = true;
 
             return builder.ConnectionString;
-        }
+        }        
+
     }
 }
