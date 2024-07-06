@@ -1,10 +1,12 @@
 ﻿using Dapper;
 using System.Data.SqlClient;
+using TimerLog.WebAPI.Attributes;
 using TimerLog.WebAPI.DB.SQLServer;
 using TimerLog.WebAPI.Models;
 
 namespace TimerLog.WebAPI.Repositoriers
 {
+    [Component]
     public interface IUsersRepository
     {
         /// <summary>

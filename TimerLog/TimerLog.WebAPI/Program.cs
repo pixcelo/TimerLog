@@ -1,3 +1,5 @@
+using System.Reflection;
+using TimerLog.WebAPI.Extensions;
 using TimerLog.WebAPI.Repositoriers;
 using TimerLog.WebAPI.Services;
 
@@ -26,10 +28,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // DIƒRƒ“ƒeƒi‚Ìİ’è
-builder.Services.AddTransient<ITimerLogService, TimerLogService>();
-builder.Services.AddTransient<IUsersService, UsersService>();
-builder.Services.AddTransient<ITimerLogRepository, TimerLogRepository>();
-builder.Services.AddTransient<IUsersRepository, UsersRepository>();
+builder.Services.AddDIComponents(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 

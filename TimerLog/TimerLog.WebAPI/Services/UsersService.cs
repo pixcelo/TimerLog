@@ -1,4 +1,5 @@
-﻿using TimerLog.WebAPI.Models;
+﻿using TimerLog.WebAPI.Attributes;
+using TimerLog.WebAPI.Models;
 using TimerLog.WebAPI.Repositoriers;
 
 namespace TimerLog.WebAPI.Services
@@ -6,6 +7,7 @@ namespace TimerLog.WebAPI.Services
     /// <summary>
     /// ユーザーサービスのインターフェイス
     /// </summary>
+    [Component]
     public interface IUsersService
     {
         /// <summary>
