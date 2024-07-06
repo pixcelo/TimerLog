@@ -5,12 +5,12 @@ using TimerLog.WebAPI.Services;
 
 namespace TimerLog.Tests.Services
 {
-    public class TimerLogServiceTests
+    public class UsersServiceTests
     {
         private readonly Mock<IUsersRepository> mockUsersRepository;
         private readonly UsersService service;
 
-        public TimerLogServiceTests()
+        public UsersServiceTests()
         {
             this.mockUsersRepository = new Mock<IUsersRepository>();
             this.service = new UsersService(this.mockUsersRepository.Object);
@@ -23,19 +23,19 @@ namespace TimerLog.Tests.Services
         public void OkGet()
         {
             // Arrange
-            var expectedUsers = new List<M_Users>()
+            var expected = new List<M_Users>()
             {
                 new M_Users { Id = 1, Name = "Tom" },
                 new M_Users { Id = 2, Name = "Ken" },
             };
 
-            mockUsersRepository.Setup(s => s.Get()).Returns(expectedUsers);
+            mockUsersRepository.Setup(s => s.Get()).Returns(expected);
 
             // Act
-            var actualResult = service.Get();
+            var actual = service.Get();
 
             // Assert
-            Assert.Equal(expectedUsers, actualResult);
+            Assert.Equal(expected, actual);
         }
 
         /// <summary>
@@ -46,15 +46,15 @@ namespace TimerLog.Tests.Services
         {
             // Arrange
             var newUser = new M_Users { Name = "Mary" };
-            var expectedId = 10;
+            var expected = 10;
 
-            mockUsersRepository.Setup(s => s.Insert(newUser)).Returns(expectedId);
+            mockUsersRepository.Setup(s => s.Insert(newUser)).Returns(expected);
 
             // Act
-            var actualResult = service.Insert(newUser);
+            var actual = service.Insert(newUser);
 
             // Assert
-            Assert.Equal(expectedId, actualResult);
+            Assert.Equal(expected, actual);
             mockUsersRepository.Verify(s => s.Insert(newUser), Times.Once);
         }
 
@@ -70,10 +70,10 @@ namespace TimerLog.Tests.Services
             mockUsersRepository.Setup(s => s.Update(existingUser)).Returns(1);
 
             // Act
-            var actualResult = service.Update(existingUser);
+            var actual = service.Update(existingUser);
 
             // Assert
-            Assert.Equal(1, actualResult);
+            Assert.Equal(1, actual);
             mockUsersRepository.Verify(s => s.Update(existingUser), Times.Once);
         }
 
@@ -81,7 +81,7 @@ namespace TimerLog.Tests.Services
         /// 正常系
         /// </summary>
         [Fact]
-        public void Delete_ShouldCallUserRepositoryAndReturnSuccess()
+        public void OkDelete()
         {
             // Arrange
             var targetId = 123;
@@ -89,11 +89,31 @@ namespace TimerLog.Tests.Services
             mockUsersRepository.Setup(s => s.Delete(targetId)).Returns(1);
 
             // Act
-            var actualResult = service.Delete(targetId);
+            var actual = service.Delete(targetId);
 
             // Assert
-            Assert.Equal(1, actualResult);
+            Assert.Equal(1, actual);
             mockUsersRepository.Verify(s => s.Delete(targetId), Times.Once);
+        }
+
+        /// <summary>
+        /// 正常系_例外を発生させるテスト
+        /// </summary>
+        [Fact]
+        public void OkThrowException()
+        {
+            // Arrange
+            var mockUsersRepository = new Mock<IUsersRepository>();
+
+            mockUsersRepository
+                .Setup(s => s.Get())
+                .Throws(new InvalidOperationException("connection error"));
+
+            // Act
+            var service = new UsersService(mockUsersRepository.Object);
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(() => service.Get());
         }
 
     }
