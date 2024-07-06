@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerLog.UI.Blazor", "TimerLog.UI.Blazor\TimerLog.UI.Blazor.csproj", "{5076EF7E-21C0-489F-8BA3-5A7FE45FA789}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimerLog.UI.Blazor", "TimerLog.UI.Blazor\TimerLog.UI.Blazor.csproj", "{5076EF7E-21C0-489F-8BA3-5A7FE45FA789}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerLog.WebAPI", "TimerLog.WebAPI\TimerLog.WebAPI.csproj", "{1809396B-D6D3-4019-BE03-DB339601F32F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimerLog.WebAPI", "TimerLog.WebAPI\TimerLog.WebAPI.csproj", "{1809396B-D6D3-4019-BE03-DB339601F32F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerLog.Tests", "TimerLog.Tests\TimerLog.Tests.csproj", "{A1C245DD-6244-4907-8E6D-2F77DF8961F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1809396B-D6D3-4019-BE03-DB339601F32F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1809396B-D6D3-4019-BE03-DB339601F32F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1809396B-D6D3-4019-BE03-DB339601F32F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1C245DD-6244-4907-8E6D-2F77DF8961F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1C245DD-6244-4907-8E6D-2F77DF8961F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1C245DD-6244-4907-8E6D-2F77DF8961F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1C245DD-6244-4907-8E6D-2F77DF8961F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
