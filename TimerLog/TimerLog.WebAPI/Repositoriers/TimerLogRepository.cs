@@ -6,6 +6,9 @@ using TimerLog.WebAPI.Models;
 
 namespace TimerLog.WebAPI.Repositoriers
 {
+    /// <summary>
+    /// タイマーログリポジトリのインターフェイス
+    /// </summary>
     [Component]
     public interface ITimerLogRepository
     {
