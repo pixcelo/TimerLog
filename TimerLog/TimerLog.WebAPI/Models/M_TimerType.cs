@@ -1,8 +1,11 @@
-﻿namespace TimerLog.WebAPI.Models
+﻿using TimerLog.WebAPI.Attributes;
+
+namespace TimerLog.WebAPI.Models
 {
     /// <summary>
     /// タイマータイプマスタ
     /// </summary>
+    [Master]
     public class M_TimerType
     {
         /// <summary>
