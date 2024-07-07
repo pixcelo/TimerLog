@@ -5,6 +5,9 @@ using TimerLog.WebAPI.Services;
 
 namespace TimerLog.Tests.Services
 {
+    /// <summary>
+    /// <see cref="UsersService"/>の単体テスト
+    /// </summary>
     public class UsersServiceTests
     {
         private readonly Mock<IUsersRepository> mockUsersRepository;
