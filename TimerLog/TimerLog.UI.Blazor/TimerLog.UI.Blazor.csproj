@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Components\Pages\SelectUsers.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TimerLog.WebAPI\TimerLog.WebAPI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Components\Pages\SelectUsers.razor" />
   </ItemGroup>
 
 </Project>

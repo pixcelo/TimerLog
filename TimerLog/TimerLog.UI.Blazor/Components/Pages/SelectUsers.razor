@@ -1,0 +1,20 @@
+﻿@page "/SelectUsers"
+@rendermode InteractiveServer
+@using TimerLog.WebAPI.Models
+@inject HttpClient httpClient
+
+<select class="form-control select-max-width">
+    @foreach (var user in users)
+    {
+        <option value="@user.Id">@user.Name</option>
+    }
+</select>
+
+@code {
+    private List<M_Users> users = new List<M_Users>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = await httpClient.GetFromJsonAsync<List<M_Users>>("api/Users");
+    }
+}
