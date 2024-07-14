@@ -61,7 +61,7 @@ namespace TimerLog.WebAPI.Controllers
         {            
             try
             {
-                this.logService.Insert(log);
+                this.logService.Update(log);                
                 return CreatedAtAction(nameof(Put), new { id = log.LogId }, log);
             }
             catch (Exception ex)

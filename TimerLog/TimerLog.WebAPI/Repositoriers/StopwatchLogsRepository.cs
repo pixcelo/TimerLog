@@ -55,7 +55,7 @@ namespace TimerLog.WebAPI.Repositoriers
         }
 
         public List<V_StopwatchLogs> Find()
-        {            
+        {
             return this.context.V_StopwatchLogs.ToList();
         }
 

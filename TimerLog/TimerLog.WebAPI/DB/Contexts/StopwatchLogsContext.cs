@@ -12,5 +12,11 @@ namespace TimerLog.WebAPI.DB.Contexts
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<T_StopwatchLogs>()
+                .UseTptMappingStrategy();
+        }
     }
 }

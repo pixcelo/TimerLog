@@ -1,4 +1,6 @@
-﻿namespace TimerLog.WebAPI.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TimerLog.WebAPI.Models
 {
     /// <summary>
     /// ストップウォッチログ
@@ -8,12 +10,18 @@
         /// <summary>
         /// ログID
         /// </summary>
+        [Key]
         public long LogId { get; set; }
         
         /// <summary>
         /// 経過時間
         /// </summary>
-        public DateTime ElapsedTime { get; set; }
+        public long ElapsedTime { get; set; }
+
+        /// <summary>
+        /// ログ日時
+        /// </summary>
+        public DateTime LogDate { get; set; }
 
         /// <summary>
         /// ユーザーID
