@@ -11,6 +11,10 @@ CREATE VIEW V_StopwatchLogs AS
 SELECT
     T.LogId,
     T.ElapsedTime,
+    -- 経過時間を分:秒.ミリ秒に変換
+    CAST((T.ElapsedTime / 60000) AS VARCHAR) + ':' + 
+    RIGHT('0' + CAST(((T.ElapsedTime % 60000) / 1000) AS VARCHAR), 2) + '.' + 
+    RIGHT('0' + CAST((T.ElapsedTime % 1000) / 10 AS VARCHAR), 2) AS ElapsedTimeFormatted,
     T.logDate,
     T.userId,
     T.typeId,
