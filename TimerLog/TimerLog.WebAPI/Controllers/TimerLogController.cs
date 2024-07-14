@@ -4,6 +4,9 @@ using TimerLog.WebAPI.Services;
 
 namespace TimerLog.WebAPI.Controllers
 {
+    /// <summary>
+    /// タイマーログコントローラ
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class TimerLogController : ControllerBase
