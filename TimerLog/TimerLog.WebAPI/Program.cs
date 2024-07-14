@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using TimerLog.WebAPI.DB.Contexts;
 using TimerLog.WebAPI.Extensions;
 
 // 名前付きCORSポリシー
@@ -29,6 +31,10 @@ builder.Services.AddSwaggerGen();
 
 // DIコンテナの設定
 builder.Services.AddDIComponents(Assembly.GetExecutingAssembly());
+
+// EF Coreの設定
+builder.Services.AddDbContext<StopwatchLogsContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection")));
 
 var app = builder.Build();
 
