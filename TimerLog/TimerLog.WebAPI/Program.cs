@@ -1,7 +1,5 @@
 using System.Reflection;
 using TimerLog.WebAPI.Extensions;
-using TimerLog.WebAPI.Repositoriers;
-using TimerLog.WebAPI.Services;
 
 // 名前付きCORSポリシー
 var timerLogOrigins = "timerLogOrigins";
@@ -14,7 +12,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy(timerLogOrigins,
         builder =>
         {
-            builder.WithOrigins("https://localhost:7177")
+            builder.WithOrigins(
+                "https://localhost:7177",
+                "https://localhost:7291")
                 .AllowAnyMethod()
                 .AllowAnyHeader();
         });
