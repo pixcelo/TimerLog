@@ -18,5 +18,21 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background: rgb(21, 32, 43);
+}
+
+.h3-font {
+    font-size: 1.75rem;
+    color: white;
+}
+
+.p-font {
+    font-size: 1.0rem;
+    color: white;
+}
+
+.timer-log {
+    font-size: 5.25rem;
+    color: white;
 }
