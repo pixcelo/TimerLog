@@ -18,6 +18,11 @@ namespace TimerLog.MVC.Controllers
             return View();
         }
 
+        public IActionResult UserLogs()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
