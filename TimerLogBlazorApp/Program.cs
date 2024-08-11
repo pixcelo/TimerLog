@@ -1,10 +1,21 @@
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using TimerLogBlazorApp.Components;
+using TimerLogBlazorApp.DB;
+using TimerLogBlazorApp.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+// DIƒRƒ“ƒeƒi‚Ìİ’è
+builder.Services.AddDIComponents(Assembly.GetExecutingAssembly());
+
+// EF Core‚Ìİ’è
+builder.Services.AddDbContext<TimerLogContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection")));
 
 var app = builder.Build();
 
