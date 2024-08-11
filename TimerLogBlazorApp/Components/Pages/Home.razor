@@ -1,7 +1,51 @@
 ﻿@page "/"
+@using TimerLogBlazorApp.Models
+@using TimerLogBlazorApp.Services
+@inject ITimerLogsService TimerLogsService
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+@if (timerLogs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ユーザー名</th>
+                <th>タイプ</th>
+                <th>日時</th>
+                <th>経過時間</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (V_TimerLogs timerLog in timerLogs)
+            {
+                <tr>
+                    <td>@timerLog.LogId</td>
+                    <td>@timerLog.UserName</td>
+                    <td>@timerLog.TimerTypeName</td>  
+                    <td>@timerLog.LogDate</td>
+                    <td>@timerLog.DisplayElapsedTime</td>                    
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private List<V_TimerLogs> timerLogs = new List<V_TimerLogs>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        timerLogs = TimerLogsService.Find();
+    }
+}
