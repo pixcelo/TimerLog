@@ -25,7 +25,7 @@ namespace TimerLogBlazorApp.Services
             return this.timerLogsRepository.Find();
         }
 
-        public int Insert(T_TimerLogs timerLog)
+        public int Save(T_TimerLogs timerLog)
         {
             return this.timerLogsRepository.Insert(timerLog);
         }

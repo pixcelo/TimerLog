@@ -23,7 +23,8 @@ namespace TimerLogBlazorApp.Repositories
 
         public int Insert(T_TimerLogs timerLog)
         {
-            throw new NotImplementedException();
+            this.context.T_TimerLogs.Add(timerLog);
+            return this.context.SaveChanges();
         }
     }
 }

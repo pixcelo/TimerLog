@@ -1,4 +1,8 @@
 ﻿@page "/stopwatch"
+@using TimerLogBlazorApp.Models
+@using TimerLogBlazorApp.Services
+@inject ITimerLogsService TimerLogsService
+@inject IJSRuntime JSRuntime
 @rendermode InteractiveServer
 
 <PageTitle>StopWatch</PageTitle>
@@ -14,7 +18,7 @@
 <br />
 <br />
 
-<button type="button" class="btn btn-light" style="margin-top: 20px;">保存</button>
+<button type="button" class="btn btn-light" style="margin-top: 20px;" @onclick="SaveTimerLog">保存</button>
 
 @code {
     private TimeSpan timeSpan;
@@ -64,5 +68,23 @@
     {
         timeSpan = DateTime.Now - startTime;
         InvokeAsync(StateHasChanged);
+    }
+
+    /// <summary>
+    /// タイマーログを保存する
+    /// </summary>
+    private void SaveTimerLog()
+    {
+        var timerLog = new T_TimerLogs
+        {
+            UserId = 1,
+            LogDate = DateTime.Now,
+            ElapsedTime = (long)timeSpan.TotalMilliseconds,
+        };
+
+        TimerLogsService.Save(timerLog);
+        ResetStopwatch();
+
+        JSRuntime.InvokeVoidAsync("alert", "保存が完了しました。");
     }
 }

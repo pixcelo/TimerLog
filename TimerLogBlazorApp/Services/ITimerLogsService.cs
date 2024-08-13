@@ -20,6 +20,6 @@ namespace TimerLogBlazorApp.Services
         /// </summary>
         /// <param name="timerLog"></param>
         /// <returns></returns>
-        int Insert(T_TimerLogs timerLog);
+        int Save(T_TimerLogs timerLog);
     }
 }
