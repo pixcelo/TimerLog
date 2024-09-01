@@ -11,9 +11,17 @@
 
 <p>Time: @timeSpan.ToString(@"hh\:mm\:ss\.ff")</p>
 
+<UserTimerSelector />
+@* <Component1 /> *@
+
+<div>
+    <label for="description">説明:</label>
+    <input type="text" id="description" @bind="description" class="form-control" />
+</div>
+
 <button type="button" class="btn btn-light" @onclick="StartStopwatch">スタート</button>
 <button type="button" class="btn btn-light" @onclick="StopStopwatch">ストップ</button>
-<button type="button" class="btn btn-light" @onclick="ResetStopwatch">リセット</button>
+<button type="button" class="btn btn-light" @onclick="() => ResetStopwatch()">リセット</button>
 
 <br />
 <br />
@@ -25,6 +33,7 @@
     private bool isRunning = false;
     private DateTime startTime;
     private Timer? timer;
+    private string description;
 
     /// <summary>
     /// ストップウォッチを開始する
@@ -54,15 +63,18 @@
     /// <summary>
     /// ストップウォッチをリセットする
     /// </summary>
-    private async void ResetStopwatch()
-    {
+    private async void ResetStopwatch(bool confirm = true)
+    {        
         if (timeSpan == TimeSpan.Zero) return;
 
-        var result = await JSRuntime.InvokeAsync<bool>(
-            "confirm",
-            "リセットしてもよろしいですか？");
+        if (confirm)
+        {
+            var result = await JSRuntime.InvokeAsync<bool>(
+              "confirm",
+              "リセットしてもよろしいですか？");
 
-        if (!result) return;
+            if (!result) return;
+        }
         
         StopStopwatch();
         timeSpan = TimeSpan.Zero;
@@ -82,17 +94,24 @@
     /// <summary>
     /// タイマーログを保存する
     /// </summary>
-    private void SaveTimerLog()
+    private async void SaveTimerLog()
     {
+        var result = await JSRuntime.InvokeAsync<bool>(
+              "confirm",
+              "保存して終了します。よろしいですか？");
+
+        if (!result) return;
+
         var timerLog = new T_TimerLogs
         {
             UserId = 1,
             LogDate = DateTime.Now,
             ElapsedTime = (long)timeSpan.TotalMilliseconds,
+            Description = description
         };
 
         TimerLogsService.Save(timerLog);
-        ResetStopwatch();
+        ResetStopwatch(confirm: false);
 
         JSRuntime.InvokeVoidAsync("alert", "保存が完了しました。");
     }

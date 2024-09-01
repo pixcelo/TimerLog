@@ -32,5 +32,10 @@ namespace TimerLogBlazorApp.Models
         /// タイプID
         /// </summary>
         public long TypeId { get; set; }
+
+        /// <summary>
+        /// 説明
+        /// </summary>
+        public string? Description { get; set; }
     }
 }

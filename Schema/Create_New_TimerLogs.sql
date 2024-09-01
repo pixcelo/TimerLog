@@ -28,6 +28,7 @@ CREATE TABLE T_TimerLogs (
     LogDate DATETIME NOT NULL, -- 記録日時
     UserId BIGINT NOT NULL, -- ユーザーID
     TypeId BIGINT NULL, -- タイプID
+    Description NVARCHAR(256) NULL, -- 説明
 );
 GO
 
@@ -44,6 +45,7 @@ SELECT
     T.logDate,
     T.userId,
     T.typeId,
+    T.Description,
     U.Name AS UserName,
     TT.Name AS TimerTypeName
 FROM
