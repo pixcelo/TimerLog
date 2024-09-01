@@ -54,10 +54,19 @@
     /// <summary>
     /// ストップウォッチをリセットする
     /// </summary>
-    private void ResetStopwatch()
+    private async void ResetStopwatch()
     {
+        if (timeSpan == TimeSpan.Zero) return;
+
+        var result = await JSRuntime.InvokeAsync<bool>(
+            "confirm",
+            "リセットしてもよろしいですか？");
+
+        if (!result) return;
+        
         StopStopwatch();
         timeSpan = TimeSpan.Zero;
+        await InvokeAsync(StateHasChanged);
     }
 
     /// <summary>
