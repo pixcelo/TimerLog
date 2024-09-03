@@ -21,6 +21,13 @@ namespace TimerLogBlazorApp.Repositories
             return this.context.V_TimerLogs.ToList();
         }
 
+        public List<V_TimerLogs> GetLogsByDate(DateTime date)
+        {
+            return this.context.V_TimerLogs
+                .Where(x => x.LogDate.Date == date.Date)
+                .ToList();
+        }
+
         public int Insert(T_TimerLogs timerLog)
         {
             this.context.T_TimerLogs.Add(timerLog);

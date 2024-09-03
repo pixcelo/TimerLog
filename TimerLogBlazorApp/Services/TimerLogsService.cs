@@ -1,5 +1,6 @@
 ﻿using TimerLogBlazorApp.Models;
 using TimerLogBlazorApp.Repositories;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace TimerLogBlazorApp.Services
 {
@@ -28,6 +29,11 @@ namespace TimerLogBlazorApp.Services
         public int Save(T_TimerLogs timerLog)
         {
             return this.timerLogsRepository.Insert(timerLog);
+        }
+
+        public　List<V_TimerLogs> GetLogsByDate(DateTime date)
+        {
+            return this.timerLogsRepository.GetLogsByDate(date);
         }
     }
 }

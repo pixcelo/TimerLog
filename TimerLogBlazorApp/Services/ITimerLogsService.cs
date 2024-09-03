@@ -16,6 +16,13 @@ namespace TimerLogBlazorApp.Services
         List<V_TimerLogs> Find();
 
         /// <summary>
+        /// 指定日のタイマーログを取得する
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        List<V_TimerLogs> GetLogsByDate(DateTime date);
+
+        /// <summary>
         /// タイマーログを登録する
         /// </summary>
         /// <param name="timerLog"></param>
